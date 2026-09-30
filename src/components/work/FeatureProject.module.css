@@ -1,0 +1,95 @@
+.feature {
+  display: grid;
+  gap: clamp(1.75rem, 3.5vw, 3rem);
+}
+
+.frameLink {
+  display: block;
+}
+
+.frameLink a {
+  display: block;
+}
+
+/* --- Title card ---------------------------------------------------------- */
+
+.info {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.lead {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--fs-title);
+  line-height: var(--leading-title);
+  letter-spacing: var(--tracking-display);
+}
+
+.title a {
+  color: var(--paper);
+}
+
+.logline {
+  max-width: 46ch;
+  color: var(--paper-70);
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.spec {
+  align-content: start;
+}
+
+.specList {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.specRow {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--hairline) solid var(--line);
+}
+
+.specRow dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.specRow dd {
+  color: var(--paper-70);
+  font-size: var(--fs-small);
+}
+
+/* --- Actions ------------------------------------------------------------- */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding-top: var(--space-5);
+  border-top: var(--hairline) solid var(--line);
+}
+
+@media (min-width: 900px) {
+  .info {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 6rem);
+  }
+
+  .spec {
+    padding-top: var(--space-5);
+  }
+}

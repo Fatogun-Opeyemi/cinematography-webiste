@@ -1,0 +1,94 @@
+.play {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: fit-content;
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.glyph {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: var(--hairline) solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--paper-70);
+  transition:
+    border-color var(--dur-2) var(--ease-out),
+    color var(--dur-1) var(--ease-out),
+    transform var(--dur-2) var(--ease-out);
+}
+
+.body {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  position: relative;
+  padding-bottom: 0.3em;
+}
+
+/* Same hairline wipe as ArrowLink, so all actions feel like one family. */
+.body::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: var(--hairline);
+  background: currentColor;
+  opacity: 0.35;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    opacity var(--dur-1) var(--ease-out);
+}
+
+.runtime {
+  color: var(--faint);
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.play:hover .glyph,
+.play:focus-visible .glyph {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: scale(1.06);
+}
+
+.play:hover .body::after,
+.play:focus-visible .body::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.play:hover .runtime,
+.play:focus-visible .runtime {
+  color: var(--paper-45);
+}
+
+/* Larger register for the hero, where it is the only action on the frame. */
+.lg .glyph {
+  width: 3.75rem;
+  height: 3.75rem;
+}
+
+.lg .label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  letter-spacing: var(--tracking-wide);
+  text-transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glyph,
+  .body::after {
+    transition: none;
+  }
+}

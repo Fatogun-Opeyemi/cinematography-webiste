@@ -1,0 +1,53 @@
+.head {
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+
+.rule {
+  height: var(--hairline);
+  background: var(--line);
+  margin-bottom: var(--space-5);
+}
+
+.row {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.lead {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.title {
+  max-width: 22ch;
+}
+
+.support {
+  display: grid;
+  gap: var(--space-4);
+  align-content: end;
+}
+
+.lede {
+  max-width: var(--measure);
+  color: var(--paper-70);
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+}
+
+@media (min-width: 900px) {
+  .row {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: end;
+  }
+
+  .support {
+    justify-items: end;
+    text-align: right;
+  }
+
+  .support .lede {
+    margin-left: auto;
+  }
+}

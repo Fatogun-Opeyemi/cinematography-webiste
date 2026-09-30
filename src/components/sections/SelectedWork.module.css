@@ -1,0 +1,12 @@
+.index {
+  margin-top: clamp(4rem, 11vh, 8rem);
+}
+
+.indexLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: var(--space-5);
+}

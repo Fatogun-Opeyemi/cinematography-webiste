@@ -1,0 +1,137 @@
+.footer {
+  padding-block: clamp(3rem, 8vh, 6rem) var(--space-6);
+  border-top: var(--hairline) solid var(--line);
+  background: var(--ink-deep);
+}
+
+.inner {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+}
+
+.top {
+  display: grid;
+  gap: var(--space-7);
+}
+
+/* --- Identity ------------------------------------------------------------ */
+
+.identity {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-display);
+  color: var(--paper);
+  width: fit-content;
+}
+
+.role {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* --- Columns ------------------------------------------------------------- */
+
+.column {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.columnTitle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-3);
+  font-size: var(--fs-small);
+  color: var(--paper-70);
+}
+
+.list a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: fit-content;
+}
+
+.external {
+  opacity: 0;
+  transform: translate3d(-3px, 3px, 0);
+  transition:
+    opacity var(--dur-1) var(--ease-out),
+    transform var(--dur-2) var(--ease-out);
+}
+
+.list a:hover .external {
+  opacity: 1;
+  transform: none;
+}
+
+.muted {
+  color: var(--faint);
+}
+
+/* --- Base row ------------------------------------------------------------ */
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-top: var(--space-6);
+  border-top: var(--hairline) solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.status {
+  color: var(--accent);
+}
+
+.toTop {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--muted);
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.toTop:hover {
+  color: var(--paper);
+}
+
+@media (min-width: 760px) {
+  .top {
+    grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .external {
+    transition: none;
+  }
+}

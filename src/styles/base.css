@@ -1,0 +1,111 @@
+/* ==========================================================================
+   BASE — document defaults, typography roles, focus, scrollbar.
+   Type roles are attached to elements so plain HTML inside any component
+   already looks art-directed.
+   ========================================================================== */
+
+body {
+  background-color: var(--ink-bg);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-tight);
+  overflow-x: hidden;
+}
+
+body[data-menu-open='true'] {
+  overflow: hidden;
+}
+
+/* --- Display / editorial headings ---------------------------------------- */
+
+h1,
+h2,
+h3,
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+}
+
+h1 {
+  font-size: var(--fs-display);
+}
+
+h2 {
+  font-size: var(--fs-display);
+}
+
+h3 {
+  font-size: var(--fs-title);
+  line-height: var(--leading-title);
+}
+
+/* --- Metadata: mono, uppercase, wide tracking ---------------------------
+   The "clapperboard" voice of the site: credits, formats, years, labels. */
+
+.meta,
+time,
+figcaption {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--muted);
+  font-feature-settings: 'tnum' 1;
+}
+
+/* --- Links --------------------------------------------------------------- */
+
+a {
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+a:hover {
+  color: var(--paper);
+}
+
+/* --- Focus ---------------------------------------------------------------
+   Visible, precise, never a browser default glow. */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: var(--hairline) solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+/* --- Media --------------------------------------------------------------- */
+
+::selection {
+  background: var(--accent);
+  color: var(--ink-deep);
+}
+
+/* --- Scrollbar (desktop only, tuned to the dark palette) ----------------- */
+
+@media (min-width: 900px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--ink-deep);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--ink-line-soft);
+    border: 3px solid var(--ink-deep);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted);
+  }
+}

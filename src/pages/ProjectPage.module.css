@@ -1,0 +1,205 @@
+/* ==========================================================================
+   PROJECT PAGE
+   Opening frame → title card → synopsis and credits → stills → pager.
+   ========================================================================== */
+
+.project {
+  padding-bottom: clamp(4rem, 12vh, 8rem);
+}
+
+.opening {
+  padding-top: clamp(4.25rem, 11vh, 6.5rem);
+}
+
+/* --- Title card ---------------------------------------------------------- */
+
+.head {
+  display: grid;
+  gap: var(--space-5);
+  padding-top: clamp(2.5rem, 6vh, 4rem);
+}
+
+.title {
+  max-width: 20ch;
+}
+
+.logline {
+  max-width: 46ch;
+  color: var(--paper-70);
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.playRow {
+  padding-top: var(--space-5);
+  margin-top: var(--space-2);
+  border-top: var(--hairline) solid var(--line);
+}
+
+/* --- Synopsis and credits ------------------------------------------------ */
+
+.body {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+  padding-top: clamp(3rem, 9vh, 6rem);
+}
+
+.sectionLabel {
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--hairline) solid var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.synopsis {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+  max-width: var(--measure);
+}
+
+.paragraph {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.side {
+  display: grid;
+  gap: var(--space-6);
+  align-content: start;
+}
+
+.awards {
+  display: grid;
+}
+
+.awardList {
+  display: grid;
+  gap: var(--space-3);
+  font-size: var(--fs-small);
+  color: var(--paper-70);
+}
+
+.awardList li {
+  padding-bottom: var(--space-3);
+  border-bottom: var(--hairline) solid var(--line);
+}
+
+/* --- Stills sequence ----------------------------------------------------
+   Rhythm entries: full-bleed, inset right, inset left. */
+
+.gallery {
+  display: grid;
+  gap: clamp(2rem, 6vh, 4.5rem);
+  padding-top: clamp(3.5rem, 10vh, 7rem);
+}
+
+.full {
+  padding-inline: 0;
+}
+
+.right,
+.left {
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.right > figure {
+  max-width: min(100%, 58rem);
+  margin-left: auto;
+}
+
+.left > figure {
+  max-width: min(100%, 46rem);
+  margin-right: auto;
+}
+
+/* --- Pager --------------------------------------------------------------- */
+
+.pager {
+  display: grid;
+  gap: clamp(2rem, 5vh, 3rem);
+  padding-top: clamp(3rem, 9vh, 6rem);
+}
+
+.pagerPair {
+  display: grid;
+  gap: var(--space-5);
+  border-top: var(--hairline) solid var(--line);
+  padding-top: var(--space-5);
+}
+
+.pagerLink {
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-4);
+}
+
+.pagerDirection {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.pagerTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-title);
+  line-height: var(--leading-title);
+  letter-spacing: var(--tracking-display);
+  color: var(--paper-70);
+  transition:
+    color var(--dur-2) var(--ease-out),
+    transform var(--dur-2) var(--ease-out);
+}
+
+.pagerMeta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.pagerLink:hover .pagerTitle {
+  color: var(--paper);
+}
+
+@media (min-width: 900px) {
+  .body {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    gap: clamp(2.5rem, 7vw, 7rem);
+  }
+
+  .pagerPair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .pagerLink[data-align='end'] {
+    justify-items: end;
+    text-align: right;
+  }
+
+  .pagerLink:hover .pagerTitle {
+    transform: translate3d(6px, 0, 0);
+  }
+
+  .pagerLink[data-align='end']:hover .pagerTitle {
+    transform: translate3d(-6px, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pagerTitle {
+    transition: none;
+  }
+}

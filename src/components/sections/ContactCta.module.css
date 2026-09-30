@@ -1,0 +1,80 @@
+.grid {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.address {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+/* The largest type on the page after the hero — the address is the point. */
+.email {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4.6vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-display);
+  color: var(--paper);
+  width: fit-content;
+  word-break: break-word;
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.email:hover {
+  color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.copy,
+.phone {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.copy {
+  padding-bottom: 0.35em;
+  border-bottom: var(--hairline) solid var(--line-strong);
+}
+
+.copy:hover,
+.phone:hover {
+  color: var(--paper);
+}
+
+.note {
+  max-width: 42ch;
+  color: var(--faint);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+}
+
+.details {
+  align-content: start;
+}
+
+.socialRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+  padding-top: var(--space-5);
+  border-top: var(--hairline) solid var(--line);
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2.5rem, 7vw, 7rem);
+  }
+}

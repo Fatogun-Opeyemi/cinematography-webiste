@@ -1,0 +1,51 @@
+.intro {
+  padding-top: clamp(7rem, 22vh, 12rem);
+  padding-bottom: clamp(2.5rem, 6vh, 4rem);
+}
+
+.intro h2 {
+  max-width: 26ch;
+}
+
+.meta {
+  display: grid;
+  gap: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: var(--hairline) solid var(--line);
+}
+
+.metaItem {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.metaLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.metaValue {
+  font-size: var(--fs-small);
+  color: var(--paper-70);
+}
+
+@media (min-width: 760px) {
+  .meta {
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 0;
+    margin-top: clamp(2rem, 5vh, 3rem);
+  }
+
+  .metaItem {
+    padding-inline: var(--space-5);
+    border-left: var(--hairline) solid var(--line);
+  }
+
+  .metaItem:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+}

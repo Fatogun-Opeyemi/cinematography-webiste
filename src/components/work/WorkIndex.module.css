@@ -1,0 +1,72 @@
+.index {
+  position: relative;
+}
+
+.list {
+  border-bottom: var(--hairline) solid var(--line);
+}
+
+/* --- Cursor-tracked preview --------------------------------------------- */
+
+.previewLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.previewAnchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+.preview {
+  width: clamp(14rem, 21vw, 20rem);
+  /* Offset up and left of the cursor so it never covers the row being read. */
+  transform: translate3d(1.5rem, -50%, 0) scale(0.96);
+  transform-origin: left center;
+  opacity: 0;
+  background: var(--ink-surface);
+  border: var(--hairline) solid var(--line-strong);
+  transition:
+    opacity var(--dur-2) var(--ease-out),
+    transform var(--dur-2) var(--ease-out);
+}
+
+.preview[data-visible] {
+  opacity: 1;
+  transform: translate3d(1.5rem, -50%, 0) scale(1);
+}
+
+.previewMedia {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--ink-media);
+}
+
+.previewMeta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.previewTitle {
+  color: var(--paper);
+  letter-spacing: var(--tracking-wide);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preview {
+    display: none;
+  }
+}

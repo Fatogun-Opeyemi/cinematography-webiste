@@ -1,0 +1,107 @@
+/* ==========================================================================
+   UTILITIES — the only global classes in the system.
+   Everything else is scoped per component via CSS Modules.
+   ========================================================================== */
+
+/* --- Layout shells ------------------------------------------------------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--lg {
+  padding-block: var(--section-y-lg);
+}
+
+/* --- Accessibility -------------------------------------------------------
+   `.skip-link` is the only global utility besides the shells and the reveal
+   primitive; everything else lives in a component's own CSS Module. */
+
+.skip-link {
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: calc(var(--z-grain) + 1);
+  padding: var(--space-2) var(--space-4);
+  background: var(--paper);
+  color: var(--ink-deep);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  transform: translateY(-200%);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   REVEAL PRIMITIVE
+   Any element can opt in with `<Reveal>` (see components/primitives/Reveal).
+   Kept global so a single transition definition governs the whole site.
+   ========================================================================== */
+
+[data-reveal='out'] {
+  opacity: 0;
+  transform: translateY(var(--reveal-y));
+}
+
+[data-reveal='in'] {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal] {
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  /* No blanket `will-change`: opacity and transform are already composited, and
+     promoting every revealed element would cost memory for no gain. */
+}
+
+/* Fade-only variant for full-bleed media, which should never shift. */
+[data-reveal][data-reveal-mode='fade'][data-reveal='out'] {
+  transform: none;
+}
+
+/* Clipped curtain wipe used sparingly for large editorial headlines. */
+.reveal-curtain {
+  display: block;
+  overflow: hidden;
+}
+
+.reveal-curtain > span {
+  display: block;
+  transform: translateY(105%);
+  transition: transform var(--dur-reveal) var(--ease-cine);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal='in'] .reveal-curtain > span {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal='out'] {
+    opacity: 1;
+  }
+
+  [data-reveal] {
+    transition: none;
+  }
+
+  .reveal-curtain > span {
+    transform: none;
+    transition: none;
+  }
+}

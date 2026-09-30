@@ -1,0 +1,28 @@
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Leading rule — draws the eye without adding chrome. */
+.eyebrow::before {
+  content: '';
+  flex: none;
+  width: clamp(1.5rem, 4vw, 3.25rem);
+  height: var(--hairline);
+  background: var(--line-strong);
+}
+
+.index {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  color: var(--muted);
+}

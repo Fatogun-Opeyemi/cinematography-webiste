@@ -1,0 +1,89 @@
+.link {
+  --link-color: var(--paper-70);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: fit-content;
+  padding-bottom: 0.35em;
+  color: var(--link-color);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  line-height: 1;
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+/* Hairline that wipes in from the left. */
+.link::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: var(--hairline);
+  background: currentColor;
+  opacity: 0.35;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    opacity var(--dur-1) var(--ease-out);
+}
+
+.link:hover,
+.link:focus-visible {
+  --link-color: var(--paper);
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.arrow {
+  display: inline-flex;
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.link:hover .arrow,
+.link:focus-visible .arrow {
+  transform: translate3d(4px, 0, 0);
+}
+
+/* Block variant: a full-width row, used for list-level actions. */
+.block {
+  width: 100%;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom: var(--hairline) solid var(--line);
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  letter-spacing: var(--tracking-wide);
+}
+
+.block::after {
+  display: none;
+}
+
+.block:hover {
+  border-color: var(--line-strong);
+}
+
+.block .arrow {
+  color: var(--muted);
+}
+
+.block:hover .arrow {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link::after,
+  .arrow {
+    transition: none;
+  }
+}

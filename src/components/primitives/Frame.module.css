@@ -1,0 +1,94 @@
+.frame {
+  position: relative;
+  margin: 0;
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink-media);
+}
+
+/* Aspect ratios are named, not numeric, so art direction stays legible. */
+.frame[data-ratio='cinema'] .media {
+  aspect-ratio: 2.39 / 1;
+}
+
+.frame[data-ratio='wide'] .media {
+  aspect-ratio: 16 / 9;
+}
+
+.frame[data-ratio='photo'] .media {
+  aspect-ratio: 3 / 2;
+}
+
+.frame[data-ratio='portrait'] .media {
+  aspect-ratio: 4 / 5;
+}
+
+.frame[data-ratio='square'] .media {
+  aspect-ratio: 1 / 1;
+}
+
+.asset {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  background: var(--ink-media);
+  transition:
+    opacity var(--dur-3) var(--ease-out),
+    transform var(--dur-3) var(--ease-cine);
+}
+
+/* Opt-in: the frame reacts to hover only when it is itself an action. */
+.frame[data-zoom]:hover .asset,
+.frame[data-zoom]:focus-within .asset {
+  transform: scale(1.02);
+}
+
+/* Full-frame presentation: nothing is cropped away. */
+.frame[data-contained] .media {
+  background: var(--ink-deep);
+}
+
+.frame[data-contained] .asset {
+  object-fit: contain;
+}
+
+.frame[data-loaded] .asset {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding-top: var(--space-3);
+  color: var(--faint);
+}
+
+.credit {
+  color: var(--faint);
+  font-style: normal;
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asset {
+    opacity: 1;
+    transition: none;
+  }
+
+  .frame[data-zoom]:hover .asset,
+  .frame[data-zoom]:focus-within .asset {
+    transform: none;
+  }
+}

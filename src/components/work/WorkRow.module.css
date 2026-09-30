@@ -1,0 +1,138 @@
+.row {
+  border-top: var(--hairline) solid var(--line);
+}
+
+.link {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  grid-template-areas:
+    'index title'
+    '.     meta';
+  align-items: baseline;
+  gap: 0.5rem var(--space-4);
+  padding-block: var(--space-5);
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.index {
+  grid-area: index;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.title {
+  grid-area: title;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4.6vw, 2.35rem);
+  line-height: var(--leading-title);
+  letter-spacing: var(--tracking-display);
+  color: var(--paper-70);
+  transition:
+    color var(--dur-2) var(--ease-out),
+    transform var(--dur-2) var(--ease-out);
+}
+
+.meta {
+  grid-area: meta;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.type,
+.year,
+.runtime {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.year {
+  color: var(--muted);
+}
+
+.thumb {
+  grid-column: 1 / -1;
+  display: block;
+  width: min(100%, 22rem);
+  margin-top: var(--space-2);
+  overflow: hidden;
+  background: var(--ink-media);
+}
+
+.thumb img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+/* --- Hover / focus ------------------------------------------------------- */
+
+.link:hover .title,
+.link:focus-visible .title {
+  color: var(--paper);
+}
+
+.link:hover .index,
+.link:focus-visible .index {
+  color: var(--accent);
+}
+
+.link:hover .thumb img,
+.link:focus-visible .thumb img {
+  transform: scale(1.03);
+}
+
+@media (min-width: 900px) {
+  .link {
+    grid-template-columns: 2.75rem minmax(0, 1.75fr) minmax(0, 0.7fr) 4.5rem 5.5rem;
+    grid-template-areas: 'index title type year runtime';
+    gap: var(--space-5);
+    align-items: baseline;
+    padding-block: clamp(1.35rem, 2.4vw, 2rem);
+  }
+
+  .meta {
+    display: contents;
+  }
+
+  .type {
+    grid-area: type;
+  }
+
+  .year {
+    grid-area: year;
+  }
+
+  .runtime {
+    grid-area: runtime;
+    text-align: right;
+  }
+
+  .link:hover .title,
+  .link:focus-visible .title {
+    transform: translate3d(6px, 0, 0);
+  }
+
+  .thumb {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title,
+  .index,
+  .thumb img {
+    transition: none;
+  }
+}

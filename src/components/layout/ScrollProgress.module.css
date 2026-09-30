@@ -1,0 +1,23 @@
+.track {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  height: var(--hairline);
+  z-index: calc(var(--z-grain) - 1);
+  pointer-events: none;
+  background: transparent;
+}
+
+.bar {
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  background: var(--accent);
+  opacity: 0.9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    display: none;
+  }
+}

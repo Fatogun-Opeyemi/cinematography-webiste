@@ -1,0 +1,212 @@
+.header {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: var(--z-header);
+  border-bottom: var(--hairline) solid transparent;
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    background-color var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out);
+}
+
+.header[data-hidden] {
+  transform: translate3d(0, -101%, 0);
+}
+
+.header[data-solid] {
+  background-color: rgba(10, 10, 12, 0.82);
+  backdrop-filter: blur(14px) saturate(0.85);
+  border-bottom-color: var(--line);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding-block: clamp(0.85rem, 1.7vw, 1.35rem);
+}
+
+/* --- Identity ------------------------------------------------------------ */
+
+.identity {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.monogram {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border: var(--hairline) solid var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  color: var(--paper-70);
+  transition:
+    border-color var(--dur-2) var(--ease-out),
+    color var(--dur-2) var(--ease-out);
+}
+
+.identity:hover .monogram {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.identityText {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--paper);
+  white-space: nowrap;
+}
+
+.craft {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+  white-space: nowrap;
+}
+
+/* --- Primary navigation -------------------------------------------------- */
+
+.nav {
+  display: none;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  position: relative;
+  padding-bottom: 0.3em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.navIndex {
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: var(--hairline);
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.navLink:hover,
+.navLink:focus-visible {
+  color: var(--paper);
+}
+
+.navLink:hover::after,
+.navLink:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.navLinkActive {
+  color: var(--paper);
+}
+
+.navLinkActive .navIndex {
+  color: var(--accent);
+}
+
+.navLinkActive::after {
+  transform: scaleX(1);
+  background: var(--accent);
+}
+
+/* --- Reel trigger -------------------------------------------------------- */
+
+.reel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--paper-70);
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.reelDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.reel:hover {
+  color: var(--paper);
+}
+
+.reel:hover .reelDot {
+  transform: scale(1.6);
+}
+
+/* --- Mobile menu toggle -------------------------------------------------- */
+
+.toggle {
+  padding: var(--space-2) 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--paper);
+}
+
+@media (min-width: 900px) {
+  .craft,
+  .nav {
+    display: flex;
+  }
+
+  .toggle {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header {
+    transition: background-color var(--dur-2) var(--ease-out);
+  }
+}

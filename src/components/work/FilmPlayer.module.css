@@ -1,0 +1,129 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: rgba(5, 5, 6, 0.97);
+  animation: overlay-in var(--dur-2) var(--ease-out) both;
+}
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- Top bar ------------------------------------------------------------- */
+
+.bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: clamp(0.85rem, 1.7vw, 1.35rem) var(--gutter);
+}
+
+.titles {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--paper);
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.close:hover {
+  color: var(--paper);
+}
+
+/* --- Stage --------------------------------------------------------------- */
+
+.stage {
+  display: grid;
+  place-items: center;
+  padding-inline: var(--gutter);
+  min-height: 0;
+  animation: stage-in var(--dur-3) var(--ease-cine) both;
+}
+
+@keyframes stage-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.video {
+  width: min(100%, 1560px);
+  max-height: min(74svh, 100%);
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #000;
+}
+
+/* --- Base ---------------------------------------------------------------- */
+
+.foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: clamp(0.85rem, 1.7vw, 1.35rem) var(--gutter);
+  min-height: 3rem;
+}
+
+.footnote,
+.hint {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.hint {
+  margin-left: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .stage {
+    animation: none;
+  }
+}

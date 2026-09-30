@@ -1,0 +1,123 @@
+/* ==========================================================================
+   DESIGN TOKENS
+   --------------------------------------------------------------------------
+   The single place to art-direct the whole site. Components never hard-code
+   colour, type or motion — they consume these variables. Re-skinning for a
+   photographer / director / editor / colourist / producer is mostly a matter
+   of editing this file plus `config/site.js`.
+   ========================================================================== */
+
+:root {
+  /* --- Colour ------------------------------------------------------------
+     Near-black, warm-neutral. No pure white, no gradient, one accent. */
+  --ink-deep: #050506;
+  --ink-bg: #0a0a0c; /* page background */
+  --ink-surface: #0e0f11; /* raised surface, overlay panels */
+  --ink-media: #131417; /* letterbox behind unloaded media */
+  --ink-line-soft: #1a1b1f;
+
+  --paper: #edeae4; /* primary type: warm off-white */
+  --paper-70: rgba(237, 234, 228, 0.7);
+  --paper-45: rgba(237, 234, 228, 0.45);
+  --muted: #8d887f; /* secondary type / metadata */
+  --faint: #5f5b55; /* tertiary, timestamps, indices */
+
+  --line: rgba(237, 234, 228, 0.12);
+  --line-strong: rgba(237, 234, 228, 0.26);
+
+  /* Single restrained accent — emulsion amber. Used only for: active states,
+     hovered rules, the record dot, scroll progress. Never for large fills. */
+  --accent: #c2a075;
+  --accent-soft: rgba(194, 160, 117, 0.38);
+
+  --focus-ring: var(--accent);
+  --scrim: rgba(5, 5, 6, 0.62);
+
+  /* --- Type -------------------------------------------------------------- */
+  --font-display: 'Instrument Serif', 'Iowan Old Style', 'Times New Roman', serif;
+  --font-sans: 'Instrument Sans', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Fluid scale — viewport-driven, no icon-sized jumps between breakpoints. */
+  --fs-hero: clamp(2.9rem, 12.4vw, 11.5rem);
+  --fs-display: clamp(2rem, 5.6vw, 4.75rem);
+  --fs-title: clamp(1.4rem, 2.7vw, 2.35rem);
+  --fs-lead: clamp(1.0625rem, 1.45vw, 1.4rem);
+  --fs-body: clamp(0.9375rem, 1vw, 1.0625rem);
+  --fs-small: 0.8125rem;
+  --fs-micro: 0.6875rem;
+
+  --tracking-micro: 0.22em;
+  --tracking-wide: 0.08em;
+  --tracking-tight: -0.015em;
+  --tracking-display: -0.03em;
+
+  --leading-display: 0.95;
+  --leading-title: 1.1;
+  --leading-body: 1.62;
+
+  /* --- Space ------------------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Generous, cinematic breathing room between movements. */
+  --section-y: clamp(4.5rem, 11vh, 9rem);
+  --section-y-lg: clamp(6rem, 16vh, 13rem);
+
+  /* --- Layout ------------------------------------------------------------ */
+  --gutter: clamp(1.125rem, 4.5vw, 4.5rem);
+  --shell-max: 1720px;
+  --measure: 58ch; /* editorial line length ceiling */
+  --hairline: 1px;
+
+  /* --- Motion ------------------------------------------------------------
+     Nothing bounces. Everything settles. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-cine: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --dur-1: 220ms;
+  --dur-2: 520ms;
+  --dur-3: 900ms;
+  --dur-reveal: 1100ms;
+
+  --reveal-y: 24px;
+
+  /* --- Media treatment ---------------------------------------------------
+     Hero footage is graded down so typography always wins. Set to `none` once
+     real graded footage is in place — stills are never filtered in CSS, so the
+     work itself is never altered. */
+  --hero-media-filter: grayscale(1) contrast(1.08) brightness(0.55);
+  --hero-media-scale: 1.04;
+
+  /* --- Layers ------------------------------------------------------------ */
+  --z-header: 60;
+  /* The menu panel sits *beneath* the header bar so the close control and the
+     monogram stay visible and tappable while it is open. */
+  --z-menu: 50;
+  --z-overlay: 80;
+  --z-grain: 90;
+
+  --grain-opacity: 0.045;
+
+  color-scheme: dark;
+}
+
+/* Motion off: collapse durations and reveal offsets to nothing so the site
+   becomes a still, instantly-readable document. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 1ms;
+    --dur-2: 1ms;
+    --dur-3: 1ms;
+    --dur-reveal: 1ms;
+    --reveal-y: 0px;
+    --hero-media-scale: 1;
+  }
+}
